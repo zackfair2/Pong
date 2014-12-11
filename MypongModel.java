@@ -21,18 +21,18 @@ public class implementedPongModel implements PongModel {
 	
 	
 	public implementedPongModel(String string1, String string2){
-		this.field = new Dimension(1200,800);
+		this.window = new Dimension(1200,800);
 		this.pongBall = new Point(600,400);
-		this.player1 = string1;
-		this.player2 = string2;
-		this.leftScore = 0;
-		this.rightScore = 0;
-		this.dirX = -5;
-		this.dirY = 0;
+		this.spelare1 = string1;
+		this.spelare2 = string2;
+		this.player1score = 0;
+		this.player2score = 0;
+		this.verticalvector = -5;
+		this.horizonvector = 0;
 		this.leftPos = 400;
 		this.rightPos = 400;
-		this.leftsize = 200;
-		this.rightsize = 200;
+		this.leftHeight = 200;
+		this.rightHeight = 200;
 		this.ballspeed = 1;
 		this.message = "";
 		}
@@ -56,7 +56,7 @@ private void moveBar(Set<Input> input){
 				break;
 					}
 			case DOWN:
-				if(rightPos + (rightHeight/2) >= field.getHeight()){
+				if(rightPos + (rightHeight/2) >= window.getHeight()){
 					break;
 				}
 				else{
@@ -76,7 +76,7 @@ private void moveBar(Set<Input> input){
 						break;
 						}
 				case DOWN:
-						if(leftPos + (leftHeight/2) >= field.getHeight()){
+						if(leftPos + (leftHeight/2) >= window.getHeight()){
 								break;
 						}
 						else{
@@ -150,9 +150,9 @@ public boolean hitLeftBar(){
 	public int getBarHeight(BarKey k) {
 		switch(k);
 		case RIGHT:
-			return rightsize;
+			return rightHeight;
 		case LEFT:
-			return leftsize;
+			return leftHeight;
 		default:
 			return 0;
 	}
