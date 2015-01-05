@@ -12,8 +12,8 @@ public class MyPongModel implements PongModel {
 	private String spelare2;
 	private int player1score;
 	private int player2score;
-	private double verticalvector;
-	private double horizonvector;
+	private int verticalvector;
+	private int horizonvector;
 	private int leftHeight;
     private int rightHeight;
     private int rightPos;
@@ -30,20 +30,54 @@ public class MyPongModel implements PongModel {
 		this.spelare2 = string2;
 		this.player1score = 0;
 		this.player2score = 0;
-		this.verticalvector = -5;
-		this.horizonvector = 0;
+		this.verticalvector = 0;
+		this.horizonvector = -5;
 		this.leftPos = 400;
 		this.rightPos = 400;
 		this.leftHeight = 200;
 		this.rightHeight = 200;
-		this.ballspeed = 1;
+		this.ballspeed = 1.0;
 		this.message = "";
 		}
 	public void compute(Set<Input> input, long delta_t) {
-		// TODO Auto-generated method stub
+	    newGame();
+	    boolean game = true;
+	    while(game){
+		updateBall();
+		if(!checkCollision()){
+		    game=false;
+		}
+		
+	    }
 		
 	}
-
+    public boolean checkCollision(){
+	if(this.pongBall.getX() <= 0 || this.pongBall.getY() >= 1200){
+	    if(hitRightBar() || hitLeftBar()){
+		changeAngle();
+		return true;
+	    }
+	    return false;
+	}
+	return true;
+    }
+    public void updateBall(){
+	this.pongBall.move((int)(this.pongBall.getX()-this.horizonvector),(int)(this.pongBall.getY()-this.verticalvector));
+    }
+    public void newGame(){
+	this.window = new Dimension(1200,800);
+	this.pongBall = new Point(600,400);
+	this.player1score = 0;
+	this.player2score = 0;
+	this.verticalvector = -5;
+	this.horizonvector = 0;
+	this.leftPos = 400;
+	this.rightPos = 400;
+	this.leftHeight = 200;
+	this.rightHeight = 200;
+	this.ballspeed = 1;
+	this.message = "Lets play!";
+    }
 	//TODO Change this//
 private void moveBar(Set<Input> input){
 	for(Input i : input){
