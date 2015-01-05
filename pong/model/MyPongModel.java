@@ -31,7 +31,7 @@ public class MyPongModel implements PongModel {
 		this.player1score = 0;
 		this.player2score = 0;
 		this.verticalvector = 0;
-		this.horizonvector = -5;
+		this.horizonvector = -1;
 		this.leftPos = 400;
 		this.rightPos = 400;
 		this.leftHeight = 200;
@@ -43,15 +43,18 @@ public class MyPongModel implements PongModel {
 	    newGame();
 	    boolean game = true;
 	    while(game){
+	    //for(int i = 0; i<100;i++){
+		toLow();
+		toHigh();
 		updateBall();
 		if(!checkCollision()){
-		    game=false;
-		}
+		  game=false;
+		    
+		   }
 		
-	    }
-		
+		   }
 	}
-    public boolean checkCollision(){
+     public boolean checkCollision(){
 	if(this.pongBall.getX() <= 0 || this.pongBall.getY() >= 1200){
 	    if(hitRightBar() || hitLeftBar()){
 		changeAngle();
@@ -60,10 +63,10 @@ public class MyPongModel implements PongModel {
 	    return false;
 	}
 	return true;
-    }
+	}
     public void updateBall(){
-	this.pongBall.move((int)(this.pongBall.getX()-this.horizonvector),(int)(this.pongBall.getY()-this.verticalvector));
-    }
+	this.pongBall.setLocation((int)(this.pongBall.getX()-this.horizonvector),(int)(this.pongBall.getY()-this.verticalvector));
+}
     public void newGame(){
 	this.window = new Dimension(1200,800);
 	this.pongBall = new Point(600,400);
