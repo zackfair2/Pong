@@ -96,7 +96,7 @@ public void toHigh(){
 
 public void toLow(){
 	if(this.pongball.getY()< this.window.getHeight())
-		this.dirY = this.dirY - (2 * this.dirY)
+	    this.dirY = this.dirY - (2 * this.dirY);
 }
 //TODO ändra lite i den här//
 private void changeAngle(){
@@ -105,7 +105,7 @@ private void changeAngle(){
 			Y--;
 				}
 		else{
-			Y++
+		    Y++;
 			}
 		}
 	else if(hitRightBar()){
@@ -127,7 +127,7 @@ public boolean hitRightBar(){
 	}
 	
 }
-
+ 
 public boolean hitLeftBar(){
 	if((this.getBarPos(BarKey.Left)+(this.getBarHeight(BarKey.Left)/2))>= this.pongBall.getY() && (this.getBarPos(BarKey.Left)-(this.getBarHeight(BarKey.Left)/2)) <= this.pongBall.getY())
 		return true;
@@ -148,13 +148,14 @@ public boolean hitLeftBar(){
 
 	@Override
 	public int getBarHeight(BarKey k) {
-		switch(k);
+	    switch(k){
 		case RIGHT:
 			return rightHeight;
 		case LEFT:
 			return leftHeight;
 		default:
 			return 0;
+	    }
 	}
 
 	@Override
@@ -170,13 +171,14 @@ public boolean hitLeftBar(){
 
 	@Override
 	public String getScore(BarKey k) {
-		switch(k);
+	    switch(k){
 		case RIGHT:
 			return Integer.toString(player1score);
 		case LEFT:
 			return Integer.toString(player2score);
 		default:
 		return "0";
+	    }
 	}
 
 	@Override
